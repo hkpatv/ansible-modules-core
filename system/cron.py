@@ -717,7 +717,9 @@ def main():
                 changed = True
 
     # no changes to env/job, but existing crontab needs a terminating newline
-    if not changed and not crontab.existing.endswith(('\r', '\n')):
+    #Not supported in Python 2.4 
+    #if not changed and not crontab.existing.endswith(('\r', '\n')):    
+    if not changed and not crontab.existing.endswith('\r') and not crontab.existing.endswith('\n'):
         changed = True
 
     res_args = dict(
